@@ -8,7 +8,8 @@ var botID = process.env.BOT_ID;
 
 //TODO: Get groupIDs and use them somehow
 var groupIDs = {
-  test: '17740054'
+  test: '17740054',
+  numenera: '13231121'
 };
 
 //Add all the quotes from the postgresql database to a global variable for easier access
@@ -24,6 +25,32 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
     });
 });
 
+//SEARCH FUNCTIONS
+function stringIn(text, strings) {  //Check if one of the strings is in text
+  for (string in string) {
+    if (text.toLowerCase().search(string) > -1) 
+      return true;
+  }
+  return false;
+}
+
+function stringStarts(text, strings) { //Check if the text starts with one of the strings
+  for (string in strings) {
+    if (text.toLowerCase().search(string) == 0) 
+      return true;
+  }
+  return false;
+}
+
+function stringIs(text, strings) {  //Check if the text is equal to one of the strings
+  for (string in strings) {
+    if (text.toLowerCase() == string)
+      return true;
+  }
+  return false;
+}
+//END SEARCH FUNCTIONS
+
 function respond() {
   console.log('in respond');
   //TODO: Change the regex to search
@@ -34,7 +61,7 @@ function respond() {
   //Verification that a user sent the command, minimizes infinite loops from the bot
   if(this.req.body.sender_type != 'bot'){
     //Else-if tree for command checking
-    if(requestData.text && coolguy.test(requestData.text)) {
+    if(coolguy.test(requestData.text)) {
     this.res.writeHead(200); 
     postMessage('');
     this.res.end(); 
@@ -44,27 +71,27 @@ function respond() {
       postMessage('!help!');
       this.res.end(); 
     }
-    else if(requestData.text.toLowerCase() == 'hi bot'){
+    else if(stringIs(requestData.text, ['hi bot'])){
       this.res.writeHead(200); 
       postMessage('Hi, ' + requestData.name);
       this.res.end(); 
     }
-    else if(requestData.text.toLowerCase() == 'nice.' || requestData.text.toLowerCase() == 'nice' || requestData.text.toLowerCase() == 'nice!'){
+    else if(stringIs(requestData.text, ['nice', 'nice.', 'nice!'])){
       this.res.writeHead(200);
       postMessage('Nice!');
       this.res.end();
     }
-    else if(requestData.text.toLowerCase().search('lmao') > -1 || requestData.text.toLowerCase().search('rofl') > -1){
+    else if(stringIn(requestData.text, ['lmao', 'rofl'])){
       this.res.writeHead(200);
       postMessage('ROFLOLMAO');
       this.res.end();
     }
-    else if(requestData.text.toLowerCase() == 'shots fired'){
+    else if(stringIs(requestData.text, ['shots fired'])){
       this.res.writeHead(200);
       postMessage('*pew pew*');
       this.res.end();
     }
-    else if(requestData.text.toLowerCase() == 'white people'){
+    else if(stringIs(requestData.text, ['white people'])){
       this.res.writeHead(200);
       postMessage('http://i.imgur.com/Ha9zBLJ.gifv');
       this.res.end();
@@ -75,17 +102,17 @@ function respond() {
       getPickup();
       this.res.end();
     }
-    else if(requestData.text.toLowerCase().search('/urban ') == 0) {
+    else if(stringStarts(requestData.text, ['/urban '])) {
       console.log('in urban');
       this.res.writeHead(200);
       var word = requestData.text.slice(7).replace(' ', '+');
       getUrban(word);
       this.res.end();
     }
-    else if(requestData.text.toLowerCase().search('/xkcd ') == 0) {
+    else if(stringStarts(requestData.text, ['/xkcd '])) {
       this.res.writeHead(200);
       console.log('in xkcd');
-      if(requestData.text.toLowerCase() == '/xkcd *' || requestData.text.toLowerCase() == '/xkcd') {
+      if(stringsIs(requestData.text, ['/xkcd','/xkcd ', '/xkcd *'])) {
         var comic = Math.floor(Math.random() * 1599).toString();
       } 
       else {
@@ -94,17 +121,17 @@ function respond() {
       getXKCD(comic);
       this.res.end();
     }
-    else if(requestData.text.toLowerCase().search('/add ') == 0) {
+    else if(stringStarts(requestData.text, ['/add '])) {
       this.res.writeHead(200);
       console.log('in add quote');
       var quote = requestData.text.slice(5);
       addQuote(quote);
       this.res.end();
     }
-    else if(requestData.text.toLowerCase().search('/quote') == 0) {
+    else if(stringStarts(requestData.text, ['/quote'])) {
       this.res.writeHead(200);
       console.log('in get quote');
-      if (requestData.text.toLowerCase() == '/quote' || requestData.text.toLowerCase() == '/quote ') {
+      if (stringIs(requestData.text, ['/quote ', '/quote'])) {
         var number = Math.floor(Math.random() * (quotes.length - 1))
       } else {
         var number = parseInt(requestData.text.slice(7))

@@ -70,7 +70,7 @@ function respond() {
       postMessage('http://i.imgur.com/Ha9zBLJ.gifv');
       this.res.end();
     }
-    else if(requestData.text.toLowerCase() == 'stephe'){
+    else if(requestData.text.toLowerCase().search("stephe") >= 0){
       this.res.writeHead(200);
       postMessage('http://i.imgur.com/pCJZp5G.jpg');
       this.res.end();

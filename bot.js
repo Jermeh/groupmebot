@@ -92,7 +92,7 @@ function respond() {
       this.res.writeHead(200);
       console.log('in xkcd');
       if(requestData.text.toLowerCase() == '/xkcd *' || requestData.text.toLowerCase() == '/xkcd') {
-        var comic = Math.floor(Math.random() * 1599).toString();
+        var comic = Math.floor(Math.random() * 1735).toString();
       } 
       else {
         var comic = requestData.text.slice(6);

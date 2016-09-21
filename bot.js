@@ -75,6 +75,12 @@ function respond() {
       postMessage('http://i.imgur.com/pCJZp5G.jpg');
       this.res.end();
     }
+    else if((requestData.text.toLowerCase().search("im") >= 0 || requestData.text.toLowerCase().search("i\'m") >= 0) 
+               && requestData.text.toLowerCase().search("dirty") >= 0 && requestData.text.toLowerCase().search("dan") >= 0){
+      this.res.writeHead(200);
+      postMessage('NO I\'M DIRTY DAN');
+      this.res.end();
+    }
     else if(requestData.text.toLowerCase().search("salty") >= 0){
       var imgNum = Math.floor(Math.random() * 8);
       var img = '';

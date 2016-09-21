@@ -75,6 +75,39 @@ function respond() {
       postMessage('http://i.imgur.com/pCJZp5G.jpg');
       this.res.end();
     }
+    else if(requestData.text.toLowerCase().search("salty") >= 0){
+      var imgNum = Math.floor(Math.random() * 8);
+      var img = '';
+      switch(imgNum) {
+        case 0:
+          img = 'http://i.imgur.com/zWbUYiX.jpg';
+          break;
+        case 1:
+          img = 'http://i.imgur.com/WzyRPpg.jpg';
+          break;
+        case 2:
+          img = 'http://i.imgur.com/amrqJaw.jpg';
+          break;
+        case 3:
+          img = 'http://i.imgur.com/AtH5DRH.jpg';
+          break;
+        case 4:
+          img = 'http://i.imgur.com/BIuECN5.jpg';
+          break;
+        case 5:
+          img = 'http://i.imgur.com/gBy3yhw.jpg';
+          break;
+        case 6:
+          img = 'http://i.imgur.com/dYjzTUO.jpg';
+          break;
+        case 7:
+          img = 'http://i.imgur.com/zAsrfbt.jpg';
+          break;
+      }
+      this.res.writeHead(200);
+      postMessage(img);
+      this.res.end();
+    }
     else if(pickup.test(requestData.text)) {
       console.log('in pickup')
       this.res.writeHead(200);

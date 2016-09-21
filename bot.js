@@ -75,6 +75,11 @@ function respond() {
       postMessage('http://i.imgur.com/pCJZp5G.jpg');
       this.res.end();
     }
+    else if(requestData.text.toLowerCase().search("atta boy") >= 0){
+      this.res.writeHead(200);
+      postMessage('http://i.imgur.com/kwPvNAf.jpg');
+      this.res.end();
+    }
     else if(pickup.test(requestData.text)) {
       console.log('in pickup')
       this.res.writeHead(200);

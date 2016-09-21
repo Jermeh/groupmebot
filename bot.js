@@ -70,11 +70,7 @@ function respond() {
       postMessage('http://i.imgur.com/Ha9zBLJ.gifv');
       this.res.end();
     }
-    else if(requestData.text.toLowerCase().search("stephe") >= 0){
-      this.res.writeHead(200);
-      postMessage('http://i.imgur.com/pCJZp5G.jpg');
-      this.res.end();
-    }
+    
     else if((requestData.text.toLowerCase().search("im") >= 0 || requestData.text.toLowerCase().search("i\'m") >= 0) 
                && requestData.text.toLowerCase().search("dirty") >= 0 && requestData.text.toLowerCase().search("dan") >= 0){
       this.res.writeHead(200);
@@ -130,6 +126,11 @@ function respond() {
       this.res.writeHead(200);
       var word = requestData.text.slice(7).replace(' ', '+');
       getUrban(word);
+      this.res.end();
+    }
+    else if(requestData.text.toLowerCase().search("stephe") >= 0){
+      this.res.writeHead(200);
+      postMessage('http://i.imgur.com/pCJZp5G.jpg');
       this.res.end();
     }
     else if(requestData.text.toLowerCase().search('/xkcd ') == 0) {

@@ -208,7 +208,7 @@ function getUrban(word) {
   request(url+word, function(err, resp, body) {
     $ = cheerio.load(body);
     link = $('.meaning');
-    responseText = $(link).text().trim().split('\n')[0];
+    responseText = $(link).text().trim().split('\n')[0].slice(0, 190);
     postMessage(responseText);
   });
 }

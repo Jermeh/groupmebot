@@ -220,7 +220,7 @@ function getUrban(word) {
     if (responseExtended.length > 190 && responseExtended.length < 380) {
       postMessage(responseExtended.slice(190, responseExtended.length));
     }
-    else {
+    else if (responseExtended.length > 190){
       postMessage(responseExtended.slice(190, 380));
     }
   });

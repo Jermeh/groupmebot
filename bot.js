@@ -214,8 +214,21 @@ function getUrban(word) {
   request(url+word, function(err, resp, body) {
     $ = cheerio.load(body);
     link = $('.meaning');
-    responseText = $(link).text().trim().split('\n')[0].slice(0, 190);
-    postMessage(responseText);
+    responseTextSliced = $(link).text().trim().split('\n')[0].slice(0, 190);
+    postMessage(responseTextSliced);
+    responseExtended = $(link).text().trim().split('\n')[0];
+    if (responseExtended.length > 190 && responseExtended.length <= 380) {
+      postMessage(responseExtended.slice(190, responseExtended.length));
+    }
+    else if (responseExtended.length > 190) {
+      postMessage(responseExtended.slice(190, 380));
+    }
+    else if (responseExtended.length > 380 && responseExtended.length <= 570) {
+      postMessage(responseExtended.slice(380, responseExtended.length);
+    }
+    else if (responseExtended.length > 570) {
+      postMessage(responseExtended.slice(380, 570));
+    }
   });
 }
 

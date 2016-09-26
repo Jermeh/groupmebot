@@ -50,6 +50,12 @@ function respond() {
       postMessage('Hi, ' + requestData.name);
       this.res.end(); 
     }
+    else if(requestData.text.toLowerCase() == 'what?'){
+      this.res.writeHead(200);
+      postMessage('What?');
+      postMessage('http://i.imgur.com/95ut9Uh.jpg');
+      this.res.end();
+    }
     else if(requestData.text.toLowerCase() == 'nice.' || requestData.text.toLowerCase() == 'nice' || requestData.text.toLowerCase() == 'nice!'){
       this.res.writeHead(200);
       postMessage('Nice!');

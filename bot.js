@@ -82,7 +82,13 @@ function respond() {
       postMessage('http://i.imgur.com/kwPvNAf.jpg');
       this.res.end();
     }
-    else if(requestData.text.toLowerCase().search("salty") >= 0){
+    else if(requestData.text.toLowerCase().search("30 second") >= 0){
+      this.res.writeHead(200);
+      postMessage('It may only be 30 seconds, but it\'ll be a good 30 seconds \;\)');
+      postMessage('http://i.imgur.com/GR1WlBI.png');
+      this.res.end();
+    }
+    else if(requestData.text.toLowerCase().search("salty") >= 0 || requestData.text.toLowerCase().search('salt queen') >= 0){
       var imgNum = Math.floor(Math.random() * 8);
       var img = '';
       switch(imgNum) {

@@ -66,6 +66,12 @@ function respond() {
       postMessage('ROFLOLMAO');
       this.res.end();
     }
+    else if(requestData.text.toLowerCase() == 'gay'){
+      this. res.writeHead(200);
+      postMessage('GAAAAAAAAAAAAAAAAAY');
+      postMessage('http://i.imgur.com/gaNa9xy.jpg');
+      this.res.end();
+    }
     else if(requestData.text.toLowerCase() == 'shots fired'){
       this.res.writeHead(200);
       postMessage('*pew pew*');

@@ -111,6 +111,12 @@ function respond() {
       postMessage('https://i.imgur.com/xkDPun6.jpg');
       this.res.end();
     }
+    else if(requestData.text.toLowerCase().search('mckenzie') >= 0 || requestData.text.toLowerCase().search('mackenzie') >=0
+            || requestData.text.toLowerCase().search('if you say so') >= 0) {
+      this.res.writeHead(200);
+      postMessage('http://i.imgur.com/KpGEcUO.jpg');
+      this.res.end();
+    }
     else if(requestData.text.toLowerCase().search("30 second") >= 0){
       this.res.writeHead(200);
       postMessage('It may only be 30 seconds, but it\'ll be a good 30 seconds \;\)');

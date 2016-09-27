@@ -94,6 +94,17 @@ function respond() {
       postMessage('http://i.imgur.com/kwPvNAf.jpg');
       this.res.end();
     }
+    else if(requestData.text.toLowerCase().search("fwan") >= 0){
+      this.res.writeHead(200);
+      postMessage('https://i.imgur.com/VKLgWql.jpg');
+      this.res.end();
+    }
+    else if(requestData.text.toLowerCase().search("you suck") >= 0){
+      this.res.writeHead(200);
+      postMessage('Suck what? \;\)');
+      postMessage('https://i.imgur.com/VKLgWql.jpg');
+      this.res.end();
+    }
     else if(requestData.text.toLowerCase().search('billy') >= 0){
       this.res.writeHead(200);
       postMessage('But Billy\'s my friend!');

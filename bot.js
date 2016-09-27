@@ -94,6 +94,12 @@ function respond() {
       postMessage('http://i.imgur.com/kwPvNAf.jpg');
       this.res.end();
     }
+    else if(requestData.text.toLowerCase().search('billy') >= 0){
+      this.res.writeHead(200);
+      postMessage('But Billy\'s my friend!');
+      postMessage('https://i.imgur.com/xkDPun6.jpg');
+      this.res.end();
+    }
     else if(requestData.text.toLowerCase().search("30 second") >= 0){
       this.res.writeHead(200);
       postMessage('It may only be 30 seconds, but it\'ll be a good 30 seconds \;\)');

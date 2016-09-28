@@ -2,7 +2,7 @@ var HTTPS = require('https');
 var cool = require('cool-ascii-faces');
 var request = require('request');
 var cheerio = require('cheerio');
-var pg = require('pg').native;
+var pg = require('pg');
 
 var botID = process.env.BOT_ID;
 pg.defaults.ssl = true;
@@ -15,7 +15,7 @@ var groupIDs = {
 
 //Add all the quotes from the postgresql database to a global variable for easier access
 quotes = []
-pg.connect(process.env.DATABASE_URL, function(err, conn, done) {
+pg.connect(process.env.DATABASE_URL, function(err, client) {
   if (err) throw err;
   console.log('Connected to postgres! Getting quotes...');
 

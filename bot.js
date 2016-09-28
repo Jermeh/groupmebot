@@ -2,16 +2,11 @@ var HTTPS = require('https');
 var cool = require('cool-ascii-faces');
 var request = require('request');
 var cheerio = require('cheerio');
-var pg = require('pg');
+var pg = require('pg').native;
 
 var botID = process.env.BOT_ID;
 pg.defaults.ssl = true;
-pg.defaults.password = 'CKoV6Oq3jrtOSOq5by8GfG7XBP';
-pg.defaults.user = 'uwoenvouizhozy';
-pg.defaults.database = 'deujtnvd1veqk9';
-pg.defaults.host = 'ec2-54-243-212-122.compute-1.amazonaws.com';
-console.log(process.env.DATABASE_URL);
-console.log(pg);
+
 //TODO: Get groupIDs and use them somehow
 var groupIDs = {
   test: '17740054',
@@ -20,7 +15,7 @@ var groupIDs = {
 
 //Add all the quotes from the postgresql database to a global variable for easier access
 quotes = []
-pg.connect(process.env.DATABASE_URL, function(err, client) {
+pg.connect(process.env.DATABASE_URL, function(err, client, done) {
   if (err) throw err;
   console.log('Connected to postgres! Getting quotes...');
 

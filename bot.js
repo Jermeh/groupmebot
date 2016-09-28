@@ -15,7 +15,7 @@ var groupIDs = {
 
 //Add all the quotes from the postgresql database to a global variable for easier access
 quotes = []
-pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+pg.connect(process.env.DATABASE_URL, function(err, conn, done) {
   if (err) throw err;
   console.log('Connected to postgres! Getting quotes...');
 

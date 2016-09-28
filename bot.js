@@ -9,6 +9,7 @@ pg.defaults.ssl = true;
 pg.defaults.password = 'CKoV6Oq3jrtOSOq5by8GfG7XBP';
 pg.defaults.user = 'uwoenvouizhozy';
 pg.defaults.database = 'deujtnvd1veqk9';
+pg.defaults.host = 'ec2-54-243-212-122.compute-1.amazonaws.com';
 console.log(process.env.DATABASE_URL);
 console.log(pg);
 //TODO: Get groupIDs and use them somehow

@@ -6,6 +6,7 @@ var pg = require('pg');
 
 var botID = process.env.BOT_ID;
 pg.defaults.ssl = true;
+pg.defaults.password = 'CKoV6Oq3jrtOSOq5by8GfG7XBP';
 console.log(process.env.DATABASE_URL);
 console.log(pg);
 //TODO: Get groupIDs and use them somehow

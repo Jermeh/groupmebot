@@ -19,10 +19,15 @@ pg.connect(process.env.DATABASE_URL, function(err, client) {
   if (err) throw err;
   console.log('Connected to postgres! Getting quotes...');
 
-  client
+  /**client
     .query('SELECT quote FROM quotes;')
     .on('row', function(row) {
       quotes.push(row.quote);
+    });*/
+  client
+    .query('SELECT table_schema,table_name FROM information_schema.tables;')
+    .on('row', function(row) {
+      console.log(JSON.stringify(row));
     });
 });
 

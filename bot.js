@@ -3,7 +3,7 @@ var cool = require('cool-ascii-faces');
 var request = require('request');
 var cheerio = require('cheerio');
 var pg = require('pg');
-var DarkSky = require('dark-sky);
+var DarkSky = require('dark-sky');
 
 var botID = process.env.BOT_ID;
 var darkSkyKey = process.env.SKY_KEY;

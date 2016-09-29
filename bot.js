@@ -5,7 +5,6 @@ var cheerio = require('cheerio');
 var pg = require('pg');
 
 var botID = process.env.BOT_ID;
-pg.defaults.ssl = true;
 
 //TODO: Get groupIDs and use them somehow
 var groupIDs = {

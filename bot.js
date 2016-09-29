@@ -3,8 +3,12 @@ var cool = require('cool-ascii-faces');
 var request = require('request');
 var cheerio = require('cheerio');
 var pg = require('pg');
+var DarkSky = require('dark-sky);
 
 var botID = process.env.BOT_ID;
+var darkSkyKey = process.env.SKY_KEY;
+var auburnLat = 32.5934;
+var auburnLong = 85.4952;                      
 
 
 
@@ -152,6 +156,13 @@ function respond() {
       getUrban(word);
       this.res.end();
     }
+    else if(requestData.text.toLowerCase().search('/weather ') == 0) {
+      console.log('in weather');
+      this.res.writeHead(200);
+      var when = requestData.text.slice(7).replace(' ', '+');
+      getWeather(when);
+      this.res.end();
+    }
     else if(requestData.text.toLowerCase().search("stephe") >= 0){
       this.res.writeHead(200);
       postMessage('http://i.imgur.com/pCJZp5G.jpg');
@@ -219,6 +230,24 @@ function getPickup() {
     link = $('#content');
     responseText = $(link).text().trim();
     postMessage(responseText);
+  });
+}
+
+function getWeather(when){
+  var options = {
+    APIKey : darkSkyKey
+  };
+  if (when == 'currently') options = {exclude : 'minutely, hourly, daily, alerts, flags'};
+  else if (when == 'minutely') options = {exclude : 'currently, hourly, daily, alerts, flags'};
+  else if (when == 'hourly') options = {exclude : 'currently, minutely, daily, alerts, flags'};
+  else if (when == 'daily') options = {exclude : 'currently, minutely, hourly, alerts, flags'};
+  else if (when == 'alerts') options = {exclude : 'currently, minutely, hourly, alerts, flags'};
+  else if (when == 'flags') options = {exclude : 'currently, minutely, hourly, alerts'};
+  darksky = new DarkSky(options);
+  darksky.get(auburnLat, auburnLong, function (err, res, data) {
+    if (err) throw err;
+    console.log('res: ' + util.inspect(res));
+    console.log('data: ' + util.inspect(data));
   });
 }
 

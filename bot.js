@@ -6,24 +6,7 @@ var pg = require('pg');
 
 var botID = process.env.BOT_ID;
 
-//TODO: Get groupIDs and use them somehow
-var groupIDs = {
-  test: '17740054',
-  numenera: '13231121'
-};
 
-//Add all the quotes from the postgresql database to a global variable for easier access
-quotes = []
-pg.connect(process.env.DATABASE_URL, function(err, client) {
-  if (err) throw err;
-  console.log('Connected to postgres! Getting quotes...');
-
-  client
-    .query('SELECT quote FROM quotes;')
-    .on('row', function(row) {
-      quotes.push(row.quote);
-    });
-});
 
 function respond() {
   console.log('in respond');
@@ -193,17 +176,6 @@ function respond() {
       addQuote(quote);
       this.res.end();
     }
-    else if(requestData.text.toLowerCase().search('/quote') == 0) {
-      this.res.writeHead(200);
-      console.log('in get quote');
-      if (requestData.text.toLowerCase() == '/quote' || requestData.text.toLowerCase() == '/quote ') {
-        var number = Math.floor(Math.random() * (quotes.length - 1))
-      } else {
-        var number = parseInt(requestData.text.slice(7))
-      }
-      getQuote(number);
-      this.res.end();
-    }
   }
   else {
     return
@@ -280,7 +252,7 @@ function getXKCD(number) {
 }
 
 function getCommands(){
-  return '/help - all the possible commands\n/cool guy - sends a cool face\n/urban <word> - urban dictionary definition\n/pickup - pickup line\n/xkcd <#> - xkcd grabber\n/add <quote> - add a quote ot the database\n/quote <#> - grab quote from database\n"hi bot" - bot responds to your name'
+  return '/help - all the possible commands\n/cool guy - sends a cool face\n/urban <word> - urban dictionary definition\n/pickup - pickup line\n/xkcd <#> - xkcd grabber\n"hi bot" - bot responds to your name'
 }
 //END COMMAND FUNCTIONS
 

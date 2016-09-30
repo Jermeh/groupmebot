@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "preinstall" : "npm install darksky",
+    "preinstall" : "debug",
     "start": "node index.js"
   },
   "dependencies": {

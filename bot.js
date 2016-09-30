@@ -250,11 +250,16 @@ function getWeather(when){
   else if (when == 'daily') options = {exclude : 'currently, minutely, hourly, alerts, flags'};
   else if (when == 'alerts') options = {exclude : 'currently, minutely, hourly, alerts, flags'};
   else if (when == 'flags') options = {exclude : 'currently, minutely, hourly, alerts'};
-  darksky = new DarkSky(process.env.SKY_KEY);
+  /**darksky = new DarkSky(process.env.SKY_KEY);
   darksky.forecast(auburnLat, auburnLong).then(function(data){
     if (err) throw err;
     console.log(JSON.stringify(data, null, 2));
+  });*/
+  var url = 'https://api.darksky.net/forecast/';
+  request(url+darkSkyKey+'/'+auburnLat+'/'+auburnLong, function(err, data) {
+    console.log(JSON.stringify(data, null, 2));
   });
+  }
 }
 
 function getUrban(word) {

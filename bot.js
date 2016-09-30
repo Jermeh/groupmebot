@@ -159,8 +159,14 @@ function respond() {
     else if(requestData.text.toLowerCase().search('/weather ') == 0) {
       console.log('in weather');
       this.res.writeHead(200);
-      var when = requestData.text.slice(7).replace(' ', '+');
-      getWeather(when);
+      var when = requestData.text.slice(7);
+      if (when == 'currently' || when == 'minutely' || when == 'daily' 
+            || when == 'alerts' || when == 'flags' || when == 'hourly') {
+        getWeather(when); 
+      }
+      else {
+        postMessage('Not a valid format. Follow /weather with currently, minutely, hourly, daily, alerts, or flags.');
+      }
       this.res.end();
     }
     else if(requestData.text.toLowerCase().search("stephe") >= 0){

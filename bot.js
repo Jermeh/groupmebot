@@ -251,10 +251,10 @@ function getWeather(when){
   else if (when == 'alerts') options = {exclude : 'currently, minutely, hourly, alerts, flags'};
   else if (when == 'flags') options = {exclude : 'currently, minutely, hourly, alerts'};
   darksky = new DarkSky.Client(options);
-  darksky.get(auburnLat, auburnLong, function (err, res, data) {
-    if (err) throw err;
-    console.log('res: ' + res);
-    console.log('data: ' + data);
+  darksky.get(auburnLat, auburnLong/**, function (err, res, data*/) {
+    //if (err) throw err;
+    //console.log('res: ' + res);
+    //console.log('data: ' + data);
   });
 }
 

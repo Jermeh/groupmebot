@@ -235,7 +235,8 @@ function getPickup() {
 
 function getWeather(when){
   var options = {
-    APIKey : darkSkyKey
+    APIKey : darkSkyKey,
+    timeout: 1000
   };
   if (when == 'currently') options = {exclude : 'minutely, hourly, daily, alerts, flags'};
   else if (when == 'minutely') options = {exclude : 'currently, hourly, daily, alerts, flags'};

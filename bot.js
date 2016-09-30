@@ -247,8 +247,8 @@ function getWeather(when){
   darksky = new DarkSky(options);
   darksky.get(auburnLat, auburnLong, function (err, res, data) {
     if (err) throw err;
-    console.log('res: ' + util.inspect(res));
-    console.log('data: ' + util.inspect(data));
+    log('res: ' + util.inspect(res));
+    log('data: ' + util.inspect(data));
   });
 }
 

@@ -253,8 +253,8 @@ function getWeather(when){
   darksky = new DarkSky.Client(options);
   darksky.forecast(auburnLat, auburnLong, function (err, res, data) {
     if (err) throw err;
-    log('res: ' + util.inspect(res));
-    log('data: ' + util.inspect(data));
+    console.log('res: ' + res);
+    console.log('data: ' + data);
   });
 }
 

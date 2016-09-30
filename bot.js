@@ -3,7 +3,7 @@ var cool = require('cool-ascii-faces');
 var request = require('request');
 var cheerio = require('cheerio');
 var pg = require('pg');
-var DarkSky = require('darksky');
+var DarkSky = require('forecastio');
 
 var botID = process.env.BOT_ID;
 var darkSkyKey = process.env.SKY_KEY;
@@ -251,10 +251,9 @@ function getWeather(when){
   else if (when == 'alerts') options = {exclude : 'currently, minutely, hourly, alerts, flags'};
   else if (when == 'flags') options = {exclude : 'currently, minutely, hourly, alerts'};
   darksky = new DarkSky(options);
-  darksky.get(auburnLat, auburnLong, function (err, res, data) {
+  darksky.forecast(auburnLat, auburnLong).then(function(data)){
     if (err) throw err;
-    console.log('res: ' + res);
-    console.log('data: ' + data);
+    console.log(JSON.stringify(data, null, 2));
   });
 }
 

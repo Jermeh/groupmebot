@@ -240,18 +240,18 @@ function getPickup() {
 }
 
 function getWeather(when){
-  var options = {
+  /**var options = {
     APIKey : darkSkyKey,
     timeout: 1000
-  };
+  };*/
   if (when == 'currently') options = {exclude : 'minutely, hourly, daily, alerts, flags'};
   else if (when == 'minutely') options = {exclude : 'currently, hourly, daily, alerts, flags'};
   else if (when == 'hourly') options = {exclude : 'currently, minutely, daily, alerts, flags'};
   else if (when == 'daily') options = {exclude : 'currently, minutely, hourly, alerts, flags'};
   else if (when == 'alerts') options = {exclude : 'currently, minutely, hourly, alerts, flags'};
   else if (when == 'flags') options = {exclude : 'currently, minutely, hourly, alerts'};
-  darksky = new DarkSky(options);
-  darksky.forecast(auburnLat, auburnLong, options).then(function(data){
+  darksky = new DarkSky(process.env.SKY_KEY);
+  darksky.forecast(auburnLat, auburnLong).then(function(data){
     if (err) throw err;
     console.log(JSON.stringify(data, null, 2));
   });

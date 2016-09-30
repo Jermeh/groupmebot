@@ -250,7 +250,7 @@ function getWeather(when){
   else if (when == 'daily') options = {exclude : 'currently, minutely, hourly, alerts, flags'};
   else if (when == 'alerts') options = {exclude : 'currently, minutely, hourly, alerts, flags'};
   else if (when == 'flags') options = {exclude : 'currently, minutely, hourly, alerts'};
-  darksky = new DarkSky(options);
+  darksky = DarkSky.Client(options);
   darksky.get(auburnLat, auburnLong, function (err, res, data) {
     if (err) throw err;
     log('res: ' + util.inspect(res));

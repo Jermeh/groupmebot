@@ -251,7 +251,7 @@ function getWeather(when){
   else if (when == 'alerts') options = {exclude : 'currently, minutely, hourly, alerts, flags'};
   else if (when == 'flags') options = {exclude : 'currently, minutely, hourly, alerts'};
   darksky = new DarkSky(options);
-  darksky.forecast(auburnLat, auburnLong).then(function(data){
+  darksky.forecast(auburnLat, auburnLong, options).then(function(data){
     if (err) throw err;
     console.log(JSON.stringify(data, null, 2));
   });

@@ -159,7 +159,7 @@ function respond() {
     else if(requestData.text.toLowerCase().search('/weather ') == 0) {
       console.log('in weather');
       this.res.writeHead(200);
-      var when = requestData.text.slice(7);
+      var when = requestData.text.slice(9);
       if (when == 'currently' || when == 'minutely' || when == 'daily' 
             || when == 'alerts' || when == 'flags' || when == 'hourly') {
         getWeather(when); 

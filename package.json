@@ -4,7 +4,7 @@
   "description": "Attempt at a groupme bot",
   "main": "index.js",
   "scripts": {
-    "preinstall" : "npm install darksky",
+    "preinstall" : "npm install forecastio",
     "start": "node index.js"
   },
   "dependencies": {

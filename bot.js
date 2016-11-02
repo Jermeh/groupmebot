@@ -39,6 +39,12 @@ function respond() {
       postMessage('http://i.imgur.com/95ut9Uh.jpg');
       this.res.end();
     }
+    else if(requestData.text.toLowerCase() == 'boom!'){
+      this.res.writeHead(200);
+      postMessage('BOOM!');
+      postMessage('https://i.imgur.com/zqnooKX.mp4');
+      this.res.end();
+    }
     else if(requestData.text.toLowerCase() == 'nice.' || requestData.text.toLowerCase() == 'nice' || requestData.text.toLowerCase() == 'nice!'){
       this.res.writeHead(200);
       postMessage('Nice!');

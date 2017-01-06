@@ -14,4 +14,4 @@ white people
 lmao/rofl  
 nice(./!)  
 
-test line
+Several 'easter egg' phrases thatw will trigger responses.
